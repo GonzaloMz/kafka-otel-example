@@ -55,14 +55,19 @@ public class StockService {
 
     public boolean reserveStock(String productId, Integer quantity) {
         Stock stock = stockDatabase.get(productId);
-        if (stock != null && stock.getQuantity() >= quantity) {
-            stock.setQuantity(stock.getQuantity() - quantity);
-            stockDatabase.put(productId, stock);
-            
-            // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "stock-reserved", Map.of("productId", productId, "quantity", quantity));
-            
-            return true;
+        if (stock != null) {
+            // Use synchronized block to prevent race condition
+            synchronized (stock) {
+                if (stock.getQuantity() >= quantity) {
+                    stock.setQuantity(stock.getQuantity() - quantity);
+                    stockDatabase.put(productId, stock);
+                    
+                    // Publish event to Kafka
+                    kafkaTemplate.send(TOPIC, "stock-reserved", Map.of("productId", productId, "quantity", quantity));
+                    
+                    return true;
+                }
+            }
         }
         return false;
     }
