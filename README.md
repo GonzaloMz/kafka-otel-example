@@ -42,7 +42,7 @@ docker compose up --build
 ```
 
 This will start:
-- Kafka (ports 9092, 9093) running in KRaft mode
+- Kafka (port 9092) running in KRaft mode
 - User Service (port 8081)
 - Stock Service (port 8082)
 - Order Service (port 8083)

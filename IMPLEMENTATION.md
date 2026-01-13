@@ -38,7 +38,7 @@ This project implements a complete distributed e-commerce system using Spring Bo
   - `billing-events`: Payment and invoice events
 
 ### Infrastructure Components
-- **Kafka** (Ports 9092/9093): Message broker running in KRaft mode (no ZooKeeper required)
+- **Kafka** (Port 9092): Message broker running in KRaft mode (no ZooKeeper required)
 - **Docker Network**: `ecommerce-network` for service communication
 
 ## Technology Stack

@@ -4,7 +4,7 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
-      - "9093:9093"
+      # Controller port (9093) not exposed externally - only for internal use
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
@@ -19,6 +19,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      # Cluster ID for KRaft mode - change this for production deployments
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
     networks:
       - ecommerce-network

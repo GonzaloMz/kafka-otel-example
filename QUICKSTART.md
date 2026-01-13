@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - Docker and Docker Compose installed
-- Ports 8081-8084, 9092, 9093 available
+- Ports 8081-8084, 9092 available
 
 ## Start the System
 
@@ -114,7 +114,7 @@ docker compose down -v
 ## Troubleshooting
 
 ### Services not starting?
-- Check if ports are available: `netstat -an | grep "808[1-4]\|9092\|9093"`
+- Check if ports are available: `netstat -an | grep "808[1-4]\|9092"`
 - Check Docker logs: `docker compose logs`
 
 ### Kafka connection issues?
@@ -131,7 +131,7 @@ docker compose down -v
 - Stock Service: http://localhost:8082
 - Order Service: http://localhost:8083
 - Billing Service: http://localhost:8084
-- Kafka: localhost:9092 (client), localhost:9093 (controller)
+- Kafka: localhost:9092 (client connections)
 
 ## API Documentation
 
