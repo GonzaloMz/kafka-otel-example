@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - Docker and Docker Compose installed
-- Ports 8081-8084, 9092, 2181 available
+- Ports 8081-8084, 9092, 9093 available
 
 ## Start the System
 
@@ -114,11 +114,11 @@ docker compose down -v
 ## Troubleshooting
 
 ### Services not starting?
-- Check if ports are available: `netstat -an | grep "808[1-4]\|9092\|2181"`
+- Check if ports are available: `netstat -an | grep "808[1-4]\|9092\|9093"`
 - Check Docker logs: `docker compose logs`
 
 ### Kafka connection issues?
-- Wait longer for Kafka to initialize (can take 30-60 seconds)
+- Wait longer for Kafka to initialize in KRaft mode (can take 30-60 seconds)
 - Restart services: `docker compose restart`
 
 ### API not responding?
@@ -131,8 +131,7 @@ docker compose down -v
 - Stock Service: http://localhost:8082
 - Order Service: http://localhost:8083
 - Billing Service: http://localhost:8084
-- Kafka: localhost:9092
-- Zookeeper: localhost:2181
+- Kafka: localhost:9092 (client), localhost:9093 (controller)
 
 ## API Documentation
 

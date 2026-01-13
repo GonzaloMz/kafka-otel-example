@@ -38,8 +38,7 @@ This project implements a complete distributed e-commerce system using Spring Bo
   - `billing-events`: Payment and invoice events
 
 ### Infrastructure Components
-- **Zookeeper** (Port 2181): Kafka coordination
-- **Kafka** (Ports 9092/29092): Message broker
+- **Kafka** (Ports 9092/9093): Message broker running in KRaft mode (no ZooKeeper required)
 - **Docker Network**: `ecommerce-network` for service communication
 
 ## Technology Stack
@@ -80,7 +79,7 @@ Each service exposes REST endpoints for CRUD operations:
 ## Development Workflow
 
 ### Local Development
-1. Start infrastructure: `docker compose up zookeeper kafka`
+1. Start infrastructure: `docker compose up kafka`
 2. Build services: `mvn clean install`
 3. Run services individually or via IDE
 

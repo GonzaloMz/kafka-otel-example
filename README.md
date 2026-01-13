@@ -42,8 +42,7 @@ docker compose up --build
 ```
 
 This will start:
-- Zookeeper (port 2181)
-- Kafka (ports 9092, 29092)
+- Kafka (ports 9092, 9093) running in KRaft mode
 - User Service (port 8081)
 - Stock Service (port 8082)
 - Order Service (port 8083)
@@ -53,7 +52,7 @@ This will start:
 
 1. Start Kafka infrastructure:
 ```bash
-docker compose up zookeeper kafka
+docker compose up kafka
 ```
 
 2. Build all services:
