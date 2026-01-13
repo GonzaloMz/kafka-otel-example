@@ -38,7 +38,7 @@ cd kafka-otel-example
 
 2. Build and start all services:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 This will start:
@@ -53,7 +53,7 @@ This will start:
 
 1. Start Kafka infrastructure:
 ```bash
-docker-compose up zookeeper kafka
+docker compose up zookeeper kafka
 ```
 
 2. Build all services:
@@ -178,12 +178,12 @@ Each service exposes actuator endpoints:
 ## Stopping the Services
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 To remove volumes as well:
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ## License
