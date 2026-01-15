@@ -1,6 +1,6 @@
 package com.ecommerce.order.service;
 
-import com.ecommerce.order.model.Order;
+import com.ecommerce.common.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,7 +27,7 @@ public class OrderService {
         orderDatabase.put(order.getId(), order);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "order-created", order.toString());
+        kafkaTemplate.send(TOPIC, "order-created", order);
         
         return order;
     }
@@ -53,7 +53,7 @@ public class OrderService {
             orderDatabase.put(id, order);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "order-status-updated", order.toString());
+            kafkaTemplate.send(TOPIC, "order-status-updated", order);
             
             return order;
         }

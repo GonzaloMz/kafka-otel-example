@@ -1,6 +1,6 @@
 package com.ecommerce.billing.service;
 
-import com.ecommerce.billing.model.Invoice;
+import com.ecommerce.common.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,7 +27,7 @@ public class BillingService {
         invoiceDatabase.put(invoice.getId(), invoice);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "invoice-created", invoice.toString());
+        kafkaTemplate.send(TOPIC, "invoice-created", invoice);
         
         return invoice;
     }
@@ -53,7 +53,7 @@ public class BillingService {
             invoiceDatabase.put(id, invoice);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "payment-processed", invoice.toString());
+            kafkaTemplate.send(TOPIC, "payment-processed", invoice);
             
             return invoice;
         }

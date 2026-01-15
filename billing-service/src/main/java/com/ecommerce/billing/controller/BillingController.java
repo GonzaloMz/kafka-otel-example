@@ -1,6 +1,6 @@
 package com.ecommerce.billing.controller;
 
-import com.ecommerce.billing.model.Invoice;
+import com.ecommerce.common.model.Invoice;
 import com.ecommerce.billing.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

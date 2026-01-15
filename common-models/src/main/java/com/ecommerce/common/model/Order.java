@@ -1,14 +1,19 @@
-package com.ecommerce.order.model;
+package com.ecommerce.common.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
     private String id;
     private String userId;
     private List<OrderItem> items;
     private Double totalAmount;
     private String status;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     public Order() {
@@ -84,54 +89,5 @@ public class Order {
                 ", status='" + status + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
-    }
-
-    public static class OrderItem {
-        private String productId;
-        private Integer quantity;
-        private Double price;
-
-        public OrderItem() {
-        }
-
-        public OrderItem(String productId, Integer quantity, Double price) {
-            this.productId = productId;
-            this.quantity = quantity;
-            this.price = price;
-        }
-
-        // Getters and Setters
-        public String getProductId() {
-            return productId;
-        }
-
-        public void setProductId(String productId) {
-            this.productId = productId;
-        }
-
-        public Integer getQuantity() {
-            return quantity;
-        }
-
-        public void setQuantity(Integer quantity) {
-            this.quantity = quantity;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public void setPrice(Double price) {
-            this.price = price;
-        }
-
-        @Override
-        public String toString() {
-            return "OrderItem{" +
-                    "productId='" + productId + '\'' +
-                    ", quantity=" + quantity +
-                    ", price=" + price +
-                    '}';
-        }
     }
 }

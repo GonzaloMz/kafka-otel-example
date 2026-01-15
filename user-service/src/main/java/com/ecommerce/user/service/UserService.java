@@ -1,6 +1,6 @@
 package com.ecommerce.user.service;
 
-import com.ecommerce.user.model.User;
+import com.ecommerce.common.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class UserService {
         userDatabase.put(user.getId(), user);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "user-created", user.toString());
+        kafkaTemplate.send(TOPIC, "user-created", user);
         
         return user;
     }
@@ -44,7 +44,7 @@ public class UserService {
             userDatabase.put(id, user);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "user-updated", user.toString());
+            kafkaTemplate.send(TOPIC, "user-updated", user);
             
             return user;
         }
@@ -55,7 +55,7 @@ public class UserService {
         User user = userDatabase.remove(id);
         if (user != null) {
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "user-deleted", user.toString());
+            kafkaTemplate.send(TOPIC, "user-deleted", user);
             return true;
         }
         return false;

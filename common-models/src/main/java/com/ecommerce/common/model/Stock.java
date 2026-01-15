@@ -1,5 +1,8 @@
-package com.ecommerce.stock.model;
+package com.ecommerce.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Stock {
     private String id;
     private String productName;

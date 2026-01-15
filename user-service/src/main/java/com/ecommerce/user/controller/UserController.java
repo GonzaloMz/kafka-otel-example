@@ -1,6 +1,6 @@
 package com.ecommerce.user.controller;
 
-import com.ecommerce.user.model.User;
+import com.ecommerce.common.model.User;
 import com.ecommerce.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

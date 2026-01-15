@@ -1,6 +1,6 @@
 package com.ecommerce.stock.service;
 
-import com.ecommerce.stock.model.Stock;
+import com.ecommerce.common.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,7 +27,7 @@ public class StockService {
         stockDatabase.put(stock.getId(), stock);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "stock-added", stock.toString());
+        kafkaTemplate.send(TOPIC, "stock-added", stock);
         
         return stock;
     }
@@ -46,7 +46,7 @@ public class StockService {
             stockDatabase.put(id, stock);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "stock-updated", stock.toString());
+            kafkaTemplate.send(TOPIC, "stock-updated", stock);
             
             return stock;
         }
