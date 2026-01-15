@@ -1,19 +1,17 @@
-FROM eclipse-temurin:17-jdk-alpine as build
-WORKDIR /workspace/app
-
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /build
 COPY pom.xml .
-COPY src src
+COPY billing-service/pom.xml billing-service/pom.xml
+COPY user-service/pom.xml user-service/pom.xml
+COPY order-service/pom.xml order-service/pom.xml
+COPY stock-service/pom.xml stock-service/pom.xml
 
-RUN apk add --no-cache maven && \
-    mvn clean package -DskipTests && \
-    mkdir -p target/dependency && \
-    cd target/dependency && \
-    jar -xf ../*.jar
+RUN mvn -B -q -e -C -DskipTests dependency:go-offline
+
+COPY . .
+RUN mvn -pl order-service -am package
 
 FROM eclipse-temurin:17-jre-alpine
-VOLUME /tmp
-ARG DEPENDENCY=/workspace/app/target/dependency
-COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.ecommerce.order.OrderServiceApplication"]
+
+COPY --from=build /build/order-service/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

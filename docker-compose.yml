@@ -26,8 +26,8 @@ services:
 
   user-service:
     build:
-      context: ./user-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./user-service/Dockerfile
     container_name: user-service
     depends_on:
       - kafka
@@ -41,8 +41,8 @@ services:
 
   stock-service:
     build:
-      context: ./stock-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./stock-service/Dockerfile
     container_name: stock-service
     depends_on:
       - kafka
@@ -56,8 +56,8 @@ services:
 
   order-service:
     build:
-      context: ./order-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./order-service/Dockerfile
     container_name: order-service
     depends_on:
       - kafka
@@ -71,8 +71,8 @@ services:
 
   billing-service:
     build:
-      context: ./billing-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./billing-service/Dockerfile
     container_name: billing-service
     depends_on:
       - kafka
