@@ -1,6 +1,6 @@
 package com.ecommerce.stock.controller;
 
-import com.ecommerce.stock.model.Stock;
+import com.ecommerce.common.model.Stock;
 import com.ecommerce.stock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
