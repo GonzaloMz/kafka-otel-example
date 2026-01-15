@@ -6,9 +6,10 @@ COPY user-service/pom.xml user-service/pom.xml
 COPY order-service/pom.xml order-service/pom.xml
 COPY stock-service/pom.xml stock-service/pom.xml
 
-RUN mvn -B -q -e -C -DskipTests dependency:go-offline
+RUN mvn -DskipTests -pl billing-service -am dependency:go-offline
 
-COPY . .
+COPY billing-service/src billing-service/src
+
 RUN mvn -pl billing-service -am package
 
 

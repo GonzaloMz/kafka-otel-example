@@ -6,9 +6,9 @@ COPY user-service/pom.xml user-service/pom.xml
 COPY order-service/pom.xml order-service/pom.xml
 COPY stock-service/pom.xml stock-service/pom.xml
 
-RUN mvn -B -q -e -C -DskipTests dependency:go-offline
+RUN mvn -DskipTests -pl stock-service -am dependency:go-offline
 
-COPY . .
+COPY stock-service/src stock-service/src
 RUN mvn -pl stock-service -am package
 
 FROM eclipse-temurin:17-jre-alpine
