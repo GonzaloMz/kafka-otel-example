@@ -27,7 +27,7 @@ public class StockService {
         stockDatabase.put(stock.getId(), stock);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "stock-added", stock);
+        kafkaTemplate.send(TOPIC, "stock-added", stock.toString());
         
         return stock;
     }
@@ -46,7 +46,7 @@ public class StockService {
             stockDatabase.put(id, stock);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "stock-updated", stock);
+            kafkaTemplate.send(TOPIC, "stock-updated", stock.toString());
             
             return stock;
         }

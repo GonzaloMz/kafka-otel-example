@@ -27,7 +27,7 @@ public class OrderService {
         orderDatabase.put(order.getId(), order);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "order-created", order);
+        kafkaTemplate.send(TOPIC, "order-created", order.toString());
         
         return order;
     }
@@ -53,7 +53,7 @@ public class OrderService {
             orderDatabase.put(id, order);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "order-status-updated", order);
+            kafkaTemplate.send(TOPIC, "order-status-updated", order.toString());
             
             return order;
         }

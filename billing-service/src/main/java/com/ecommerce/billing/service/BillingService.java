@@ -27,7 +27,7 @@ public class BillingService {
         invoiceDatabase.put(invoice.getId(), invoice);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "invoice-created", invoice);
+        kafkaTemplate.send(TOPIC, "invoice-created", invoice.toString());
         
         return invoice;
     }
@@ -53,7 +53,7 @@ public class BillingService {
             invoiceDatabase.put(id, invoice);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "payment-processed", invoice);
+            kafkaTemplate.send(TOPIC, "payment-processed", invoice.toString());
             
             return invoice;
         }

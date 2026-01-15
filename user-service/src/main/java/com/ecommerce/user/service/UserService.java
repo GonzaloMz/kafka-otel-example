@@ -25,7 +25,7 @@ public class UserService {
         userDatabase.put(user.getId(), user);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "user-created", user);
+        kafkaTemplate.send(TOPIC, "user-created", user.toString());
         
         return user;
     }
@@ -44,7 +44,7 @@ public class UserService {
             userDatabase.put(id, user);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "user-updated", user);
+            kafkaTemplate.send(TOPIC, "user-updated", user.toString());
             
             return user;
         }
@@ -55,7 +55,7 @@ public class UserService {
         User user = userDatabase.remove(id);
         if (user != null) {
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "user-deleted", user);
+            kafkaTemplate.send(TOPIC, "user-deleted", user.toString());
             return true;
         }
         return false;
