@@ -1,5 +1,8 @@
 package com.ecommerce.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderItem {
     private String productId;
     private Integer quantity;
