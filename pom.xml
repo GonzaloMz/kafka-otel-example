@@ -13,6 +13,7 @@
     <description>Parent POM for E-Commerce microservices system</description>
 
     <modules>
+        <module>common-models</module>
         <module>user-service</module>
         <module>stock-service</module>
         <module>order-service</module>

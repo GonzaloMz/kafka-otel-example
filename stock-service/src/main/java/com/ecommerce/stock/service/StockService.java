@@ -1,6 +1,7 @@
 package com.ecommerce.stock.service;
 
-import com.ecommerce.stock.model.Stock;
+import com.ecommerce.common.model.Order;
+import com.ecommerce.common.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,7 +28,7 @@ public class StockService {
         stockDatabase.put(stock.getId(), stock);
         
         // Publish event to Kafka
-        kafkaTemplate.send(TOPIC, "stock-added", stock.toString());
+        kafkaTemplate.send(TOPIC, "stock-added", stock);
         
         return stock;
     }
@@ -46,7 +47,7 @@ public class StockService {
             stockDatabase.put(id, stock);
             
             // Publish event to Kafka
-            kafkaTemplate.send(TOPIC, "stock-updated", stock.toString());
+            kafkaTemplate.send(TOPIC, "stock-updated", stock);
             
             return stock;
         }
@@ -73,8 +74,8 @@ public class StockService {
     }
 
     @KafkaListener(topics = "order-events", groupId = "stock-service-group")
-    public void handleOrderEvents(String message) {
-        System.out.println("Received order event: " + message);
+    public void handleOrderEvents(Order message) {
+        System.out.println("Received order (Order) event: " + message);
         // Handle order-related stock updates
     }
 }

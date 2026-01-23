@@ -36,7 +36,12 @@ git clone https://github.com/GonzaloMz/kafka-otel-example.git
 cd kafka-otel-example
 ```
 
-2. Build and start all services:
+2. Build the Docker image that contains the project dependencies and is used as a shared builder image.
+```bash
+./create_builder_image.sh
+```
+
+3. Build and start all services:
 ```bash
 docker compose up --build
 ```
