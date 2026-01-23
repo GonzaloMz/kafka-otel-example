@@ -1,6 +1,8 @@
 package com.ecommerce.billing.service;
 
 import com.ecommerce.common.model.Invoice;
+import com.ecommerce.common.model.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -61,8 +63,8 @@ public class BillingService {
     }
 
     @KafkaListener(topics = "order-events", groupId = "billing-service-group")
-    public void handleOrderEvents(String message) {
-        System.out.println("Received order event for billing: " + message);
+    public void handleOrderEvents(Order message) {
+        System.out.println("Received order (Order) event for billing: " + message);
         // Handle order-related billing processing
         // When an order is created, automatically create an invoice
     }

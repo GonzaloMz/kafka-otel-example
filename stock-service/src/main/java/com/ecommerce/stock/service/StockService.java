@@ -1,5 +1,6 @@
 package com.ecommerce.stock.service;
 
+import com.ecommerce.common.model.Order;
 import com.ecommerce.common.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -73,8 +74,8 @@ public class StockService {
     }
 
     @KafkaListener(topics = "order-events", groupId = "stock-service-group")
-    public void handleOrderEvents(String message) {
-        System.out.println("Received order event: " + message);
+    public void handleOrderEvents(Order message) {
+        System.out.println("Received order (Order) event: " + message);
         // Handle order-related stock updates
     }
 }
