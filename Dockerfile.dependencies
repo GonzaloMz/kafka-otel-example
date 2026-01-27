@@ -6,5 +6,6 @@ COPY billing-service/pom.xml billing-service/pom.xml
 COPY user-service/pom.xml user-service/pom.xml
 COPY order-service/pom.xml order-service/pom.xml
 COPY stock-service/pom.xml stock-service/pom.xml
+COPY lib lib
 
 RUN mvn -DskipTests -am dependency:go-offline

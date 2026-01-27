@@ -63,8 +63,9 @@ public class BillingService {
     }
 
     @KafkaListener(topics = "order-events", groupId = "billing-service-group")
-    public void handleOrderEvents(Order message) {
+    public void handleOrderEvents(Order message) throws InterruptedException {
         System.out.println("Received order (Order) event for billing: " + message);
+        Thread.sleep(1000); // Simulate processing delay
         // Handle order-related billing processing
         // When an order is created, automatically create an invoice
     }
