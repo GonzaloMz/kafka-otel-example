@@ -7,4 +7,5 @@ RUN mvn -pl user-service -am package
 
 FROM eclipse-temurin:17-jre-alpine
 COPY --from=build /build/user-service/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=build /build/lib /lib
+ENTRYPOINT ["java", "-javaagent:/lib/opentelemetry-javaagent.jar","-jar","/app.jar"]
