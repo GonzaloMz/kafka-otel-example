@@ -1,12 +1,12 @@
 services:
   zipkin:
-    image: openzipkin/zipkin:latest
+    image: openzipkin/zipkin:3.4
     ports:
       - "9411:9411"   # Zipkin UI
     networks:
       - ecommerce-network
   otel-collector:
-    image: otel/opentelemetry-collector:latest
+    image: otel/opentelemetry-collector:0.86.0
     container_name: otel-collector
     ports:
       - "4317:4317"      # OpenTelemetry Protocol (OTLP) gRPC port
