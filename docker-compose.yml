@@ -16,6 +16,8 @@ services:
       - ./otel-config.yaml:/etc/otel-config.yaml
     command:
       - "--config=/etc/otel-config.yaml"
+    depends_on:
+      - zipkin
     networks:
       - ecommerce-network
   kafka:
